@@ -1,0 +1,53 @@
+{% extends 'postapp/basic.html' %}
+{% block title %} revticket {% endblock title %}
+{% block content %}
+
+
+<section class="revt_section">
+    <div class="mainrevtick">
+        <div class="revt_h1">
+            <h1>Add comment</h1>
+        </div>
+        <div class="revt_maindiv">
+            
+            <form action="" method="POST" class="revt_form">
+                {% csrf_token %}
+                <div class="revt_div1">
+                    <div>
+                        <p>you are posting in response to</p>
+                    </div>
+                    <div class="revt_h5">
+                        <h5>{{ ticket_to_review.user }} - {{ticket_to_review.title}}</h5>
+                    </div>
+                </div>
+                
+
+                <div class="revt_divbox">
+                    <div class="revt_h4">
+                        <p>{{ticket_to_review.description}}</p>
+                    </div>
+                    <div class="revt_imgdiv">
+                        <img src="{{ticket_to_review.image.url}}" alt="">
+                    </div>
+                </div>
+        
+                <div class="revt_h42">
+                    <h4>Add a comment</h4>
+                </div>
+                <div class="revt_review">
+                    {{reviewform.as_table}}
+                </div>
+                
+        
+                <div class="revt_input">
+                    <input type="submit" value="Comment">
+                </div>
+            </form>
+        </div>
+    
+    </div>
+
+
+</section>
+
+{% endblock content %}

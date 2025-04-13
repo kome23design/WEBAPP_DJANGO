@@ -1,0 +1,174 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 0 7px rgb(38, 38, 38);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 7px;
+
+}
+.img_name{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.imagedashdiv{
+    height: 60px;
+    width: 60px;
+}
+.imagedashdiv img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.list{
+    display: flex;
+    list-style-type: none;
+}
+.list li a{
+    text-decoration: none;
+    padding: 20px;
+    color: blue;
+    font-size: 20px;
+}
+.list li a:hover{
+    
+    background-color: rgb(6, 6, 139);
+    color: white;
+    transition: .1s;
+}
+
+.dash_section{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10rem;
+    align-items: center;
+}
+.dash_btndiv{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+.dash_btndiv a{
+    border: solid green 1px;
+    font-weight: bold;
+    color: green;
+    font-size: 25px;
+    padding: .5rem 2rem;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 2px;
+}
+.dash_btndiv a:hover{
+    border: none;
+    color: white;
+    background-color: green;
+    transition: .1s;
+}
+.l44div1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 0 0 0;
+}
+.l44div1 .time{
+    font-size: 11px;
+}
+.tittle_desc {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4rem;
+}
+.tittle_desc h2{
+    display: flex;
+    justify-content: center;
+}
+.img_div{
+    display: flex;
+    justify-content: center;
+    height: 440px;
+    width: 400px;
+}
+.img_div img{
+    height: 100%;
+    width: 90%;
+    border-radius: 3px;
+}
+.l44btn_div{
+    display: flex;
+    justify-content: space-between;
+}
+.l44btn_div1{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+}
+.l44btn_div1 a{
+    border: solid blue 1px;
+    border-radius: 2px;
+    background-color: white;
+    border-radius: 2px;
+    padding: .5rem 2rem;
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+}
+.l44btn_div1 a:hover{
+    background-color: rgb(37, 37, 41);
+    color: white;
+    border: none;
+    transition: .1s;
+}
+.emt_div{
+    border: solid .1px #00000024;
+    margin-top: 40px;
+    width: 100%;
+}
+
+
+
+
+
+ /* *********code for mobile phone********* */
+@media screen and (max-width:767px){
+
+    .imagedashdiv {
+        height: 55px;
+        width: 60px;
+    }
+    .list li a {
+        padding: 7px;
+        font-size: 11px;
+    }
+    .dash_section {
+        padding-top: 8rem;
+    }
+    .dash_btndiv {
+        width: 100%;
+    }
+    .dash_btndiv a{
+        font-size: 18px;
+        padding: .4rem 1.2rem;
+    }
+    .l44div1 {
+        padding: 2.5rem .5rem 0 .5rem;
+    }
+    .tittle_desc {
+        padding-left: 0;
+    }
+    .img_div {
+        display: flex;
+        justify-content: flex-start;
+        height: 440px;
+        width: 365px;
+    }
+    .l44btn_div1 a{
+        padding: .3rem .8rem;
+        font-size: 13px;
+    }
+}

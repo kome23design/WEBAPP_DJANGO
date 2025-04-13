@@ -1,0 +1,121 @@
+{% extends 'postapp/basic.html' %}
+{% block title %} dashboard {% endblock title %}
+{% block content %}
+
+
+<section class="dash_section">
+    <div class="dash_btndiv">
+        <a href="{% url 'postapp:ticket_page' %}">Post a Status</a>
+        <a href="{% url 'postapp:post_page' %}">My Posts</a>
+    </div>
+    {% if posts %}
+    {% for p in posts %}
+    {% if p.content_type == 'REVIEW' %}
+    <div class="mainsection_div">
+        <!-- <div class="mainline_div1">
+            <div class="line11">
+                <p>{{p.user}} posted a comment</p>
+                <p>{{p.time_created}}</p>
+            </div> -->
+            <!-- <div class="line22">
+                <h3>{{p.headline}}</h3>
+                {% if p.rating == 1 %}
+                <div>
+                    <span>&#9733</span>
+                    <span>&#9734</span>
+                    <span>&#9734</span>
+                    <span>&#9734</span>
+                    <span>&#9734</span>
+                </div>
+                {% elif p.rating == 2 %}
+                <div>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9734</span>
+                    <span>&#9734</span>
+                    <span>&#9734</span>
+                </div>
+                {% elif p.rating == 3 %}
+                <div>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9734</span>
+                    <span>&#9734</span>
+                </div>
+                {% elif p.rating == 4 %}
+                <div>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9734</span>
+                </div>
+                {% elif p.rating == 5 %}
+                <div>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                    <span>&#9733</span>
+                </div>
+    
+                {% endif %}
+    
+    
+            </div> -->
+            <!-- <div class="line33"> -->
+                
+                
+                    <!-- <p>{{ p.time_created }}</p> -->
+                <!-- <div><p>{{ p.ticket.title }}</p></div>
+                <div><p>{{ p.ticket.description }}</p></div>
+                <div class="img_div">
+                    <img src="{{ p.ticket.image.url}}" alt="">
+                </div>
+                    
+                 -->
+                
+            <!-- </div> -->
+    
+        <!-- </div> -->
+        {% else %}
+        <div class="line44">
+            <div class="l44div1">
+                <p>{{p.user}} posted a ticket</p>
+                <p class="time">{{ p.time_created }}</p>
+            </div>
+            <div class="tittle_desc">
+                <h2>{{ p.title }}</h2>
+                <p>{{ p.description }}</p>
+            </div>
+        
+            <div class="img_div">
+                <img src="{{ p.image.url}}" alt="">
+            </div>
+    
+            <div class="l44btn_div">
+                
+                 <div class="l44btn_div1">
+                    <a href="{% url 'postapp:comment_page' p.id %}">View comments</a>
+                 </div>
+                <div class="l44btn_div1">
+                    <a href="{% url 'postapp:revtick_page' p.id %}">Post a comment</a>
+                </div>
+            </div>
+
+            <div class="emt_div"></div>
+        </div>
+    
+    </div>
+    
+    {% endif %}
+            {% endfor %}
+            {% else %}
+            <p>no post to display</p>
+            {% endif %}
+
+</section>
+
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head> <link rel="stylesheet" href="{% static 'postcss/comment.css' %}">
+    <link rel="stylesheet" href="{% static 'postcss/updates.css' %}">
+    <link rel="stylesheet" href="{% static 'postcss/delete.css' %}">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %} </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   
+</head>
+<body>
+    {% block content %}
+    {% endblock content %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.js"></script>
+</body>
+</html>

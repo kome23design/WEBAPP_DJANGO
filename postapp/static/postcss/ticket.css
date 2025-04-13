@@ -1,0 +1,53 @@
+.ticketsection{
+    display: flex;
+    justify-content: center;
+    padding-top: 10rem;
+}
+.mainticketdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: solid blue 1px;
+    border-radius: 4px;
+}
+.creatediv h3{
+    color: blue;
+    font-weight: bold;
+    font-size: 25px;
+}
+.ticform2 {
+    display: flex;
+    justify-content: flex-end;
+}
+.ticform2 input{
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    font-weight: bold;
+    padding: .3rem .8rem;
+}
+
+
+.profilemainticketdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 0 7px rgb(38, 38, 38);
+    border-radius: 4px;
+}
+
+
+ /* *********code for mobile phone********* */
+ @media screen and (max-width:767px){
+
+    .ticketsection {
+        display: flex;
+        justify-content: center;
+        padding-top: 6rem;
+    }
+    
+ }
+

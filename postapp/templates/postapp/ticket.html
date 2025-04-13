@@ -1,0 +1,40 @@
+{% extends 'postapp/basic.html' %}
+{% block title %} ticket {% endblock title %}
+{% block content %}
+
+
+<section class="ticketsection">
+    <div class="mainticketdiv">
+        <div class="creatediv">
+            <h3>Post a Status</h3>
+        </div>
+        <div class="form_div">
+            <form method="Post" enctype="multipart/form-data" class="ticketform">
+                <div class="ticform1">
+                    {%  csrf_token  %}
+                    {{form.as_p}}
+                </div>
+                <div class="ticform2">
+                    <input type="submit" value="save">
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+        
+
+
+        $("#text_id").emojioneArea({
+            pickarPosition:'right'
+        });
+        $("#title_id").emojioneArea({
+            pickarPosition:'right'
+        });
+    });
+</script>
+
+
+{% endblock content %}

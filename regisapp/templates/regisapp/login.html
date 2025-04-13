@@ -1,0 +1,40 @@
+{% extends 'regisapp/basic.html' %}
+{% load static %}
+{% block title %} login {% endblock title %}
+{% block content %}
+<section class="loginsection">
+    <div class="mainDiv">
+        <div class="div_1">
+            <div class="h1txt">
+                <h1>Log In</h1>
+            </div>
+            
+            <form method="Post" class="login_form">
+                <div class="input_form">
+                    {%  csrf_token  %}
+                    {{form.as_p}}
+                </div>
+                <div class="submit_btn">
+                    <span></span><input type="submit" value="Log In">
+                </div>
+            </form>        
+        </div>
+        <div class="emptydiv"></div>
+        <div class="div_2">
+            <div class="pdiv">
+                <p>New to this site?</p>
+            </div>
+            <div class="adiv">
+                <a href="{% url 'regisapp:regis_page' %}">Register Now</a>
+            </div>
+             
+        </div>
+
+    </div>
+    
+
+</section>
+
+
+
+{% endblock content %}

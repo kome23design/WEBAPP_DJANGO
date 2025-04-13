@@ -1,0 +1,54 @@
+{% extends 'postapp/basic2.html' %}
+{% block title %} update {% endblock title %}
+{% block content %}
+
+<section class="updt_section">
+    <div class="main_updtdiv">
+        <form method="Post" enctype="multipart/form-data" class="updt_form">
+            {%  csrf_token  %}
+            <div id="emoji_id1">
+                <label for="">title</label>
+                {{form.title}}
+            </div>
+            <div id="emoji_id2">
+                <label for="">description</label>
+                {{form.description}}
+            </div>
+            
+            <div class="image-field">
+                <label>Current Image:</label>
+                <img src="{{ form.instance.image.url }}" alt="Current image" style="max-width: 200px;">
+                <br>
+                <label>Change Image:</label>
+                {{ form.image }}
+            </div>
+
+            <!-- <input type="hidden" name="nam" value="{{form.instance.image.url}}"> -->
+            <!-- {{form.as_p}} -->
+            <div class="updt_subdiv">
+                <input type="submit" value="save">
+                <a href="{% url 'postapp:post_page' %}">Cancel</a>
+            </div>
+        </form>
+        
+        
+    </div>
+    
+</section>
+
+<script>
+    $(document).ready(function(){
+        
+
+
+        $("#emoji_id2 textarea").emojioneArea({
+            pickarPosition:'right'
+        });
+        $("#emoji_id1 input").emojioneArea({
+            pickarPosition:'right'
+        });
+    });
+</script>
+
+
+{% endblock content %}

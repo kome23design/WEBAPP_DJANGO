@@ -1,0 +1,38 @@
+.delete_section{
+    display: flex;
+    justify-content: center;
+    padding: 17%;
+}
+.main_deltdiv{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 4px;
+    padding: 1rem;
+    border-radius: 4px;
+    align-items: center;
+}
+.delt_subdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.delt_subdiv input{
+    border: none;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: .3rem 2.5rem;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+.delt_subdiv a{
+    background-color: green;
+    color: white;
+    padding: .2rem 1rem;
+    font-weight: bold;
+    border-radius: 3px;
+    text-decoration: none;
+}

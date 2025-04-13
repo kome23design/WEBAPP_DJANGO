@@ -1,0 +1,31 @@
+{% extends 'postapp/basic2.html' %}
+{% block title %} comments {% endblock title %}
+{% block content %}
+
+<section class="comment_section">
+    <div class="back_div">
+        <a href="{% url 'postapp:mydash_page' %}">Go back</a>
+    </div>
+    <div class="main_commentdiv">
+        {% for y in sort_comment %}
+        <div class="field_com">
+            <div class="field_comdiv1">
+                <h4>{{y.user}}</h4>
+                <p>{{y.time_created}}</p>
+            </div>
+            <div class="field_comdiv2">
+                <p>{{y.body}}</p>
+            </div>
+            
+        </div>
+        <div class="delup_btn">
+            {% if y.user == request.user %}
+            <button onclick="window.location.href='{% url 'postapp:editcomment_page' y.id %}';">Update</button>
+            <button onclick="window.location.href='{% url 'postapp:deletecomment_page' y.id %}';">delete</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock content %}

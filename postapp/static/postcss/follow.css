@@ -1,0 +1,72 @@
+table {
+    border-collapse: collapse;
+}
+th, td{
+    border: 1px solid blue;
+    padding: .1rem 7rem;
+}
+.follow_section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 10rem 30%;
+}
+.follow_maindiv{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    box-shadow: 0 0 4px;
+    /* border: solid 1px blue; */
+    border-radius: 4px;
+    padding: 2rem;
+}
+/* .inpfoldiv{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+}
+.inpfoldiv input{
+    border: none;
+    background-color: green;
+    color: white;
+    font-style: italic;
+    padding: .2rem;
+    border-radius: 3px;
+} */
+.foll_div2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.foll_div3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.follow_form input{
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: .3rem 1.3rem;
+    font-size: 11px;
+}
+
+
+ /* *********code for mobile phone********* */
+ @media screen and (max-width:767px){
+
+    th, td {
+        border: 1px solid blue;
+        padding: .1rem 3rem;
+    }
+    .follow_section {
+        padding: 6rem;
+    }
+
+ }

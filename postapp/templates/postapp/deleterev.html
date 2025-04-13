@@ -1,0 +1,20 @@
+{% extends 'postapp/basic2.html' %}
+{% block title %} delete {% endblock title %}
+{% block content %}
+
+<section class="delete_section">
+    <div class="main_deltdiv">
+        <p>Are you sure you want to delete?</p>
+        <form method="Post" class="delt_form">
+            {%  csrf_token  %}
+            <div class="delt_subdiv">
+                <input type="submit" value="Delete">
+                <a href="{% url 'postapp:mydash_page' %}">Cancel</a>
+            </div>
+            
+        </form>
+        
+    </div>
+</section>
+
+{% endblock content %}

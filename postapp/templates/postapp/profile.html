@@ -1,0 +1,24 @@
+{% extends 'postapp/basic.html' %}
+{% block title %} profilepage {% endblock title %}
+{% block content %}
+
+
+
+
+<section class="ticketsection">
+    <main class="profilemainticketdiv">
+        <form method="Post" enctype="multipart/form-data" class="ticketform">
+            {%  csrf_token  %}
+            {{form.as_p}}
+            <div class="ticform2">
+                
+                <input type="submit" value="save">
+                
+            </div>
+        </form>
+        
+    </main>
+</section>
+
+
+{% endblock content %}

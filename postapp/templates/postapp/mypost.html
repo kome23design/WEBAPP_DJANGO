@@ -1,0 +1,45 @@
+{% extends 'postapp/basic.html' %}
+{% block title %} mypost {% endblock title %}
+{% block content %}
+
+<section class="sectionpost">
+    <div class="h2btndiv">
+        <h1>My Posts</h1>
+    </div>
+    <div class="mainpost_div">
+        
+    {% for post in posts %}
+        {% if post.is_ticket %}
+        <fieldset class="fieldset_tick">
+
+            <div class="field_tic1">
+                <legend>My Post</legend>
+                <p>
+                    {{post.tick_created}}
+                </p>
+                    
+            
+            </div>
+
+            <div class="post_line">
+                <h2> {{post.tick_title}} </h2>
+                <p>{{post.tick_description}}</p>
+                <div class="fieldimg_div">
+                    <img src="{{post.tick_image}}" alt="">
+                </div>
+            </div>
+            <div class="fieldbtn_div">
+                <button onclick="window.location.href='{% url 'postapp:update_page' post.tick_id %}';">Update</button>
+                <button onclick="window.location.href='{% url 'postapp:delete_page' post.tick_id %}';">Delete</button>
+            </div>
+
+        </fieldset>
+
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+</section>
+
+
+{% endblock content %}

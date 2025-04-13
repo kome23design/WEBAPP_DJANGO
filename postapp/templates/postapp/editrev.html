@@ -1,0 +1,21 @@
+{% extends 'postapp/basic2.html' %}
+{% block title %} update {% endblock title %}
+{% block content %}
+
+<section class="updt_section">
+    <div class="main_updtdiv">
+        <form method="Post" class="updt_form">
+            {%  csrf_token  %}
+            {{form.as_p}}
+            <div class="updt_subdiv">
+                <input type="submit" value="save">
+                
+            </div>
+        </form>
+        
+        
+    </div>
+    
+</section>
+
+{% endblock content %}

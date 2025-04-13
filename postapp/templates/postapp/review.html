@@ -1,0 +1,30 @@
+{% extends 'postapp/basic.html' %}
+{% block title %} review {% endblock title %}
+{% block content %}
+
+
+
+<section class="ticketsection">
+    <div class="maintickdiv">
+        <div class="creatediv">
+            <h3>Create a Review</h3>
+        </div>
+        <div class="form_div">
+            <form method="Post" enctype="multipart/form-data" class="ticketform">
+                <div class="ticform1">
+                    {%  csrf_token  %}
+                    {{formtick.as_p}}
+                    {{form.as_p}}
+                </div>
+                <div class="ticform2">
+                    <input type="submit" value="save">
+                </div>
+                
+                
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

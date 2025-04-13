@@ -1,0 +1,66 @@
+.comment_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+.back_div a{
+    border: 1px solid green;
+    border-radius: 3px;
+    color: green;
+    padding: .5rem 4rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+.back_div a:hover{
+    border: none;
+    background-color: green;
+    color: white;
+}
+.main_commentdiv{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    width: 90%;
+    margin-top: 4rem;
+}
+.field_com{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 68%;
+    padding: 1rem;
+    box-shadow: 0 0 4px;
+    border-radius: 4px
+    
+}
+.field_comdiv1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.field_comdiv1 p{
+    font-size: 10px;
+}
+.field_comdiv1 h4{
+    font-size: 25px;
+    color: blue;
+    margin: 0;
+}
+.field_comdiv2{
+    background-color: rgb(234 234 234 / 74%);
+    color: black;
+    padding: .5rem 1.3rem .5rem 1rem;
+    border-radius: 4px;
+    width: 90%;
+}
+.field_comdiv2 p{
+    overflow-wrap: break-word;
+}
+
+
+
+.back_div a {}

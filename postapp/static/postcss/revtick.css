@@ -1,0 +1,60 @@
+.revt_section{
+    display: flex;
+    justify-content: center;
+    padding-top: 10rem;
+    
+}
+.mainrevtick{
+    display: flex;
+    flex-direction: column;
+    border: solid blue 1px;
+    border-radius: 4px;
+    padding: 1rem;
+    align-items: center;
+}
+.revt_h1 h1{
+    color: blue;
+}
+.revt_div1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.revt_div1 p{
+    font-size: 10px;
+}
+.revt_imgdiv{
+    height: 400px;
+    width: 350px;
+}
+.revt_imgdiv img{
+    height: 100%;
+    width: 100%;
+}
+.revt_h42{
+    display: flex;
+    justify-content: center;
+    color: blue;
+}
+.revt_input{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.revt_input input{
+    background-color: blue;
+    color: white;
+    border-radius: 2px;
+    padding: .5rem 2rem;
+    font-weight: bold;
+    border: none;
+}
+.revt_input input:hover{
+    background-color: white;
+    color: black;
+    border: solid black 1px;
+    transition: .1s;
+}
+#id_body{
+    height: 40px;
+}

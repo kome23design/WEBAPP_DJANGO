@@ -1,0 +1,48 @@
+.helptext{
+    display: none;
+}
+.registersection{
+    display: flex;
+    justify-content: center;
+    padding-top: 6rem;
+}
+.regist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 0 7px rgb(38, 38, 38);
+    border-radius: 7px;
+}
+.regis_form{
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+}
+.submitdiv{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-top: 7px;
+}
+.submitdiv input{
+    padding: .4rem 3rem;
+        font-size: 15px;
+        border: none;
+        background-color: blue;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+}
+.submitdiv a{
+    padding: .4rem 2rem;
+    font-size: 15px;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+}

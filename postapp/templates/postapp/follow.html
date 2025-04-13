@@ -1,0 +1,70 @@
+{% extends 'postapp/basic.html' %}
+{% block title %} follow_page {% endblock title %}
+{% block content %}
+
+
+<section class="follow_section">
+    <div class="follow_maindiv">
+        <div class="foll_div1">
+            <form method="Post">
+                {%  csrf_token  %}
+                    <input type="submit" value="Follow">
+                <select name="foll" id="" class="select_foll">
+                    {% for q in user_to_follow %}
+                    <option value="{{q.id}}">{{q}}</option>
+                    {% endfor %}
+                </select>               
+            </form>
+        </div>
+        
+        {% if users_follow %}
+        
+        
+        <div class="foll_div2">
+            <div class="foll_h3btn">
+                <h3>users that i follow:</h3>
+            </div>
+            <table>
+                {% for t in users_follow %}
+                <tr>
+                    <td><h5>{{ t.followed_user.username}}</h5></td>
+                    <td><form method="Post" class="follow_form" action="{% url 'postapp:unfollow_page' t.followed_user.id %}" onsubmit="return confirm('Are you sure you want to unfollow {{q.id}}')">
+                        {%  csrf_token  %}
+                        <input type="submit" value="Unfollow">
+                    </form>
+                </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        
+        {% endif %}
+        {% if user_follow_you %}
+        
+        
+        <div class="foll_div3">
+            <div class="foll_h3btn2">
+                <h3>users that follow me:</h3>
+            </div>
+            <table>
+                {% for k in user_follow_you %}
+                <tr>
+                    <td><h5>{{ k }}</h5></td>
+                </tr>
+                {% endfor %}
+            </table>
+                
+            
+        </div>
+        
+        
+        {% endif %}
+    </div>
+    
+    
+</section>
+
+
+
+{% endblock content %}
