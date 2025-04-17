@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
 # Create your models here.
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -14,6 +15,12 @@ class Ticket(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='image/')
     time_created = models.DateTimeField(auto_now_add=True)
+    likes=models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                 related_name='liked_tickets',
+                                 blank=True)
+    dislikes=models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                   related_name='disliked_tickets',
+                                   blank=True)
 
 
 class Comment(models.Model):
@@ -49,3 +56,18 @@ class profilemodel(models.Model):
     date_profile=models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.user.username
+    
+
+class ChatMessage(models.Model):
+    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['timestamp']
+
+    def __str__(self):
+        return f"{self.sender} to {self.receiver}: {self.message[:20]}"
+        

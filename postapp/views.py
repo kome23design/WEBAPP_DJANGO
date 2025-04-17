@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponseForbidden, JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from postapp.forms import Ticketform, Reviewform, profilform
-from postapp.models import profilemodel, Ticket, Comment, UserFollows
+from postapp.models import profilemodel, Ticket, Comment, UserFollows, ChatMessage
 from django.contrib.auth.decorators import login_required
-from django.db.models import CharField, Value
+from django.db.models import CharField, Value, Count, Prefetch, Q
 from django.contrib.auth.models import User
 from itertools import chain
 from django.utils import timezone
+from django.db import transaction
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 
@@ -230,6 +233,17 @@ def Dashboard(request):
     tick_from_followers=tick_from_followers.annotate(content_type= Value('TICKET', CharField()))
     tickuser=tickuser.annotate(content_type= Value('TICKET', CharField()))
 
+
+    tickets=Ticket.objects.annotate(
+        likes_count = Count('likes'),
+        dislikes_count = Count('dislikes'),
+        content_type = Value('TICKET', output_field=CharField())
+    ).prefetch_related(
+        Prefetch('likes', queryset=User.objects.filter(pk=request.user.id)),
+        Prefetch('dislikes', queryset=User.objects.filter(pk=request.user.id))
+    )
+
+
     posts=sorted(chain(rev_from_followers, rev_from_tick, tick_from_followers, tickuser), key=lambda post:
                  post.time_created, reverse=True) # we then combine again all that was gotten above and put in one list then sorted
 
@@ -337,3 +351,59 @@ def view_comment(request, id):
     
 
     return render(request, "postapp/comment.html", {'sort_comment':sort_comment })
+
+
+@transaction.atomic
+@require_POST
+@login_required
+def React_to_ticket(request, ticket_id):
+    try:
+        ticket=Ticket.objects.get(id=ticket_id) 
+        action = request.POST.get('action')
+        if action not in ['like','dislike','unlike','undislike']:
+            raise ValueError('Action invalid')
+        if action == 'like':
+            ticket.dislikes.remove(request.user)
+            ticket.likes.add(request.user)
+        elif action == 'dislike':
+            ticket.likes.remove(request.user)
+            ticket.dislikes.add(request.user)
+        elif action == 'unlike':
+            ticket.likes.remove(request.user)
+        elif action == 'undislike':
+            ticket.dislikes.remove(request.user)
+        return JsonResponse({
+            'likes_count': ticket.likes.count(),
+            'dislikes_count': ticket.dislikes.count()
+        })
+    except Exception as e: 
+        return JsonResponse({'error':str(e)},
+                            status=400)
+    
+
+
+@login_required
+def chat_view(request, recipient_id):
+    recipient = get_object_or_404(User, id=recipient_id)
+    if not UserFollows.objects.filter(user=request.user, followed_user=recipient).exists():
+        return HttpResponseForbidden("Vous ne pouvez pas discuter avec cet utilisateur")
+
+    if request.method == 'POST':
+        message = request.POST.get('message', '').strip()
+        if message:
+            ChatMessage.objects.create(
+                sender=request.user,
+                receiver=recipient,
+                message=message
+            )
+        return redirect('postapp:chat', recipient_id=recipient_id)
+    
+    messages = ChatMessage.objects.filter(
+        (Q(sender=request.user) & Q(receiver=recipient)) |
+        (Q(sender=recipient) & Q(receiver=request.user))
+    ).order_by('timestamp')
+    
+    return render(request, 'postapp/chat.html', {
+        'recipient': recipient,
+        'messages': messages
+    })

@@ -63,4 +63,53 @@
 
 
 
-.back_div a {}
+ /* *********code for mobile phone********* */
+ @media screen and (max-width:767px){
+
+    .field_com{
+        width: 100%;
+        padding: .4rem;
+    }
+    .back_div{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .back_div a {
+        border: none;
+        font-size: 15px;
+        text-decoration: underline;
+        padding: 1rem;
+        font-weight: normal;
+        color: black;
+    }
+    .back_div a:hover{
+        border: none;
+        background-color: none;
+        color: black;
+    }
+    .main_commentdiv{
+        margin-top: 1rem;
+    }
+    .field_comdiv1 h4 {
+        font-size: 15px;
+    }
+    .field_comdiv1 p {
+        font-size: 8px;
+        margin-bottom: 0;
+    }
+    .delup_btn{
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+    .delup_btn button{
+        border: none;
+        background-color: #e6e5e4;
+        font-size: 12px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        border-radius: 7px;
+    }
+ }

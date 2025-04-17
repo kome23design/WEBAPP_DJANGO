@@ -93,6 +93,33 @@
             <div class="img_div">
                 <img src="{{ p.image.url}}" alt="">
             </div>
+
+
+
+            <div class="reaction-buttons">
+                <!-- Like Button -->
+                <!-- Like Button -->
+<form class="reaction-form like-form" data-ticket-id="{{ p.id }}">
+    {% csrf_token %}
+    <button type="submit" 
+            class="like-btn {% if request.user in p.likes.all %}active{% endif %}"
+            data-action="{% if request.user in p.likes.all %}unlike{% else %}like{% endif %}">
+        👍 <span class="count">{{ p.likes.count }}</span>
+    </button>
+</form>
+
+<!-- Dislike Button -->
+<form class="reaction-form dislike-form" data-ticket-id="{{ p.id }}">
+    {% csrf_token %}
+    <button type="submit" 
+            class="dislike-btn {% if request.user in p.dislikes.all %}active{% endif %}"
+            data-action="{% if request.user in p.dislikes.all %}undislike{% else %}dislike{% endif %}">
+        👎 <span class="count">{{ p.dislikes.count }}</span>
+    </button>
+</form>
+            </div>
+
+
     
             <div class="l44btn_div">
                 
@@ -116,6 +143,88 @@
             {% endif %}
 
 </section>
+
+
+
+<script>
+    document.querySelectorAll('.reaction-form').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const ticketId = form.dataset.ticketId;
+            const button = e.submitter;
+            const action = button.dataset.action;
+    
+            try {
+                const response = await fetch(`{% url 'postapp:react_page' 0 %}`.replace('0', ticketId), {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `action=${encodeURIComponent(action)}` // Encode the action
+                });
+                
+                if (!response.ok) throw await response.json();
+                
+                const data = await response.json();
+                
+                // Update ALL ticket counters.
+                document.querySelectorAll(`[data-ticket-id="${ticketId}"] .count`).forEach(span => {
+                    if (span.closest('.like-form')) {
+                        span.textContent = data.likes_count;
+                    } else {
+                        span.textContent = data.dislikes_count;
+                    }
+                });
+    
+                // update the button
+                document.querySelectorAll(`[data-ticket-id="${ticketId}"] button`).forEach(btn => {
+                    const isLikeBtn = btn.classList.contains('like-btn');
+                    btn.classList.toggle('active', 
+                        (isLikeBtn && data.likes_count > 0) || 
+                        (!isLikeBtn && data.dislikes_count > 0)
+                    );
+                });
+    
+            } catch (error) {
+                // console.error('Error:', error);
+                alert(error.message || 'Une erreur est survenue');
+            }
+        });
+    });
+    </script>
+    
+    <style>
+    .reaction-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .reaction-form button {
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #f8f9fa;
+    }
+    
+    /* .reaction-form button.active {
+        background: #007bff;
+        color: white;
+        border-color: #007bff;
+    } */
+    .like-form button.active {
+        background: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+    .dislike-form button.active {
+        background: #011021;
+        color: white;
+        border-color: #ffffff;
+    }
+    </style>
 
 
 {% endblock content %}

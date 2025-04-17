@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head> <link rel="stylesheet" href="{% static 'postcss/dassh.css' %}">
+<head> <link rel="stylesheet" href="{% static 'postcss/dashh.css' %}">
     <link rel="stylesheet" href="{% static 'postcss/ticket.css' %}">
     <link rel="stylesheet" href="{% static 'postcss/revtick.css' %}">
     <link rel="stylesheet" href="{% static 'postcss/follow.css' %}">
@@ -24,8 +24,8 @@
                 <img src="{{profilePhoto.image.url}}" alt="">
                 {% endif %}
             </div>
-            <div>
-                <h3>{{user.first_name}}</h3>
+            <div class="h3div">
+                <h3>{{user.username}}</h3>
             </div>
         </div>
     

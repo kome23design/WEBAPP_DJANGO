@@ -141,9 +141,12 @@ header{
         height: 55px;
         width: 60px;
     }
+    .h3div h3 {
+        font-size: 8px;
+    }
     .list li a {
         padding: 7px;
-        font-size: 11px;
+        font-size: 10px;
     }
     .dash_section {
         padding-top: 8rem;

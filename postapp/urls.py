@@ -17,4 +17,7 @@ urlpatterns=[
     path("revtickpage/<int:id>/",views.Review_ticket,name="revtick_page"),
     path("profilepage/",views.profile,name="profile_page"),
     path("commentpage/<int:id>/",views.view_comment,name="comment_page"),
+    path('react/<int:ticket_id>/',views.React_to_ticket,name="react_page"),
+    path('chat/<int:recipient_id>/', views.chat_view, name='chat'),
+
 ]

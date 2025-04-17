@@ -1,0 +1,46 @@
+{% extends 'postapp/basic2.html' %}
+{% block title %} comments {% endblock title %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            Discussion avec {{ recipient.first_name }}
+        </div>
+        <div class="card-body" style="height: 400px; overflow-y: auto;">
+            {% for message in messages %}
+            <div class="mb-3 {% if message.sender == request.user %}text-end{% endif %}">
+                <div class="d-flex align-items-center {% if message.sender == request.user %}justify-content-end{% endif %}">
+                    {% if message.sender != request.user %}
+                    <img src="{{ message.sender.image.url }}" 
+                         class="rounded-circle me-2" width="40" height="40">
+                    {% endif %}
+                    <div class="bg-light p-3 rounded">
+                        <p class="mb-0">{{ message.message }}</p>
+                        <small class="text-muted">{{ message.timestamp|timesince }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="card-footer">
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="message" 
+                           class="form-control" 
+                           placeholder="Écrire un message..." 
+                           required>
+                    <button class="btn btn-success" type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
