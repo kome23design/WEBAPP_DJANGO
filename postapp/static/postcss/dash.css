@@ -175,3 +175,13 @@ header{
         font-size: 13px;
     }
 }
+
+
+@media screen and (max-width:380px){
+    .img_name{
+        gap: 3px;
+    }
+    .list li a {
+        padding: 4px;
+    }
+}
